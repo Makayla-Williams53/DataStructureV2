@@ -13,7 +13,7 @@ public class Tree
     //set a new count variable for the different nodes
     private int newCount = 1;
     //boolean for search method
-    private final static boolean found = false;
+    private static boolean found = false;
 
     //constructor
     public Tree()
@@ -26,12 +26,24 @@ public class Tree
         return root;
     }//end getRoot
 
+    public int getValue(TreeNode node)
+    {
+        return node.value;
+    }
+
     //create root
     public void addRoot(int x)
     {
-        root = new TreeNode(x);
-        queue.add(root);
-        depth++;
+        if(queue.isEmpty())
+        {
+            root = new TreeNode(x);
+            queue.add(root);
+            depth++;
+        }
+        else
+        {
+            System.out.println("\nThis tree already has a root");
+        }
     }//end addRoot
 
     //add row
@@ -48,8 +60,8 @@ public class Tree
             //if i is greater than the height of the tree STOP
             if(i > depth)
             {
-                //FIX LATER
                 //I apologize in advance for this
+                //I truly tried to figure out a way to get this to work without the break
                 break;
             }//end if
             else
@@ -109,6 +121,8 @@ public class Tree
             //if the newi is greater than the newdepth break
             if(newi > newDepth)
             {
+                //forgive me
+                //I tried to get rid of it, I really did
                 break;
             }//end if
             else
@@ -138,7 +152,7 @@ public class Tree
     public void searchNodeTest(TreeNode node, int x)
     {
         //if found
-        if(searchNode(node, x))
+        if(searchNode(node, x) == true)
         {
             System.out.println("Value was found within the tree");
         }//end if
@@ -150,6 +164,7 @@ public class Tree
 
     public boolean searchNode(TreeNode node, int x)
     {
+        found = false;
         //if the tree is empty print out empty
         if(root == null)
         {
@@ -160,7 +175,7 @@ public class Tree
             //if the value is that node return true
             if(node.value == x)
             {
-                return true;
+                found = true;
             }//end inner if
             //if not found search left node
             if(!found && node.left != null)
