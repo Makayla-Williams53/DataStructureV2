@@ -226,7 +226,7 @@ public class Tree
         System.out.flush();
         System.setOut(old);
         return baos.toString();
-    }
+    }//end getTreeValues
 
     private static class TreeNode
     {

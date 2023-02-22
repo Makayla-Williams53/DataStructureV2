@@ -98,6 +98,51 @@ class MainTest {
         myTree.addRoot(875);
         myTree.deleteRow(myTree.getRoot());
         assertTrue(myTree.getTreeValues(myTree.getRoot()).matches(""));
-    }
+    }//end deleteAllRowsPass
 
+    //Search tests
+    @Test
+    void searchValue4FoundPass()
+    {
+        Tree myTree = new Tree();
+        myTree.addRoot(54);
+        myTree.addRow();
+        myTree.addRow();
+        assertTrue(myTree.searchNode(myTree.getRoot(), 4) == true);
+    }//end searchValue4FoundPass
+
+    @Test
+    void searchValue9FoundPass()
+    {
+        Tree myTree = new Tree();
+        myTree.addRoot(54);
+        myTree.addRow();
+        myTree.addRow();
+        myTree.addRow();
+        assertTrue(myTree.searchNode(myTree.getRoot(), 9) == true);
+    }//end searchValue9FoundPass
+
+    @Test
+    void searchValue101FoundFail()
+    {
+        Tree myTree = new Tree();
+        myTree.addRoot(54);
+        myTree.addRow();
+        myTree.addRow();
+        myTree.addRow();
+        assertTrue(myTree.searchNode(myTree.getRoot(), 101) == false);
+    }//end searchValue101FoundFail
+
+    @Test
+    void searchValue987FoundFail()
+    {
+        Tree myTree = new Tree();
+        myTree.addRoot(54);
+        myTree.addRow();
+        myTree.addRow();
+        myTree.addRow();
+        myTree.addRow();
+        myTree.addRow();
+        assertTrue(myTree.searchNode(myTree.getRoot(), 987) == false);
+    }//end searchValue101FoundFail
 }//end MainTest
