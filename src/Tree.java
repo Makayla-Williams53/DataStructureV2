@@ -1,3 +1,5 @@
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -209,6 +211,19 @@ public class Tree
         printInOrder(node.right);
     }//end printInOrder
 
+    //Not going to lie I had to find a way that took the print out of the root and take it in and make it a variable
+    //This code is fully from stack overflow https://stackoverflow.com/questions/8708342/redirect-console-output-to-string-in-java
+    public String getTreeValues(TreeNode node)
+    {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        PrintStream ps = new PrintStream(baos);
+        PrintStream old = System.out;
+        System.setOut(ps);
+        printInOrder(root);
+        System.out.flush();
+        System.setOut(old);
+        return baos.toString();
+    }
 
     private static class TreeNode
     {

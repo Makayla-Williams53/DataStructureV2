@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class MainTest {
 
     //AddRoot tests
-    //test to see if the add root method works with a single rood being added
+    //tests to see if the add root method works with a single rood being added
     @Test
     public void addRootPass()
     {
