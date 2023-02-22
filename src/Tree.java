@@ -95,59 +95,62 @@ public class Tree
 
     //The only way my brain could figure out how to delete a row
     //was to create a new node with one less row, then set root to row
-    public void deleteRow()
+    public void deleteRow(TreeNode temp)
     {
+        newCount = 1;
         //set a depth with a value 2 less than the original depth
         int newDepth = depth - 2;
-        //if the new depth is zero return a null node
-        if(newDepth == 0);
+        depth = newDepth + 1;
+        if(newDepth > 0)
+        {
+            Queue<TreeNode> newQueue = new LinkedList<>();
+            //create a new i variable
+            int newi = 0;
+
+            //crate a new root node and add it to the queue
+            TreeNode newRoot = new TreeNode(temp.value);
+            newQueue.add(newRoot);
+
+            //while queue isn't empty fill the tree
+            while(!newQueue.isEmpty())
+            {
+                //create a new size variable to hold the new queue size
+                int newSize = newQueue.size();
+                //increase new i by 1
+                newi++;
+                //if the newi is greater than the newdepth break
+                if(newi > newDepth)
+                {
+                    //forgive me
+                    //I tried to get rid of it, I really did
+                    break;
+                }//end if
+                else
+                {
+                    //for when j is less than new size crate new nodes for the left and right branches
+                    for(int j = 0; j < newSize; j++)
+                    {
+                        //set a current node to the first one in the queue and remove it from the queue
+                        TreeNode node = newQueue.remove();
+                        node.left = new TreeNode(newCount);
+                        newCount++;
+                        node.right = new TreeNode(newCount);
+                        newCount++;
+
+                        //add node left and node right to queue
+                        newQueue.add(node.left);
+                        newQueue.add(node.right);
+                    }//end for loop
+                }//end else
+            }//end while loop
+
+            //set the original root to the newly created one
+            root = newRoot;
+        }
+        else
         {
             root = null;
-        }//end if
-        //create a new node
-        Queue<TreeNode> newQueue = new LinkedList<>();
-        //create a new i variable
-        int newi = 0;
-
-        //crate a new root node and add it to the queue
-        TreeNode newRoot = new TreeNode(0);
-        newQueue.add(newRoot);
-
-        //while queue isn't empty fill the tree
-        while(!newQueue.isEmpty())
-        {
-            //create a new size variable to hold the new queue size
-            int newSize = newQueue.size();
-            //increase new i by 1
-            newi++;
-            //if the newi is greater than the newdepth break
-            if(newi > newDepth)
-            {
-                //forgive me
-                //I tried to get rid of it, I really did
-                break;
-            }//end if
-            else
-            {
-                //for when j is less than new size crate new nodes for the left and right branches
-                for(int j = 0; j < newSize; j++)
-                {
-                    //set a current node to the first one in the queue and remove it from the queue
-                    TreeNode node = newQueue.remove();
-                    node.left = new TreeNode(newCount);
-                    newCount++;
-                    node.right = new TreeNode(newCount);
-                    newCount++;
-
-                    //add node left and node right to queue
-                    newQueue.add(node.left);
-                    newQueue.add(node.right);
-                }//end for loop
-            }//end else
-        }//end while loop
-
-        //set the original root to the newly created one
-        root = newRoot;
+        }
     }//end deleteRow
 
     //takes the results from the searchNode and puts it into printed sentences

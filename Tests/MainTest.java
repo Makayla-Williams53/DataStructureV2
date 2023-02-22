@@ -64,4 +64,40 @@ class MainTest {
         myTree.addRow();
         assertTrue(myTree.getTreeValues(myTree.getRoot()).matches("1 2 3 4 4 5 6 7 8 9 10 11 12 13 14 103 ") == false);
     }//end addThreeRowsFail
+
+    //delete tests
+    @Test
+    void deleteRowPass()
+    {
+        Tree myTree = new Tree();
+        myTree.addRoot(12);
+        myTree.addRow();
+        myTree.addRow();
+        myTree.addRow();
+        myTree.deleteRow(myTree.getRoot());
+        assertTrue(myTree.getTreeValues(myTree.getRoot()).matches("3 1 4 12 5 2 6 "));
+    }//end deleteRowPass
+
+    @Test
+    void deleteTwoRowsPass()
+    {
+        Tree myTree = new Tree();
+        myTree.addRoot(62);
+        myTree.addRow();
+        myTree.addRow();
+        myTree.addRow();
+        myTree.deleteRow(myTree.getRoot());
+        myTree.deleteRow(myTree.getRoot());
+        assertTrue(myTree.getTreeValues(myTree.getRoot()).matches("1 62 2 "));
+    }//deleteTwoRowsPass
+
+    @Test
+    void deleteAllRowsPass()
+    {
+        Tree myTree = new Tree();
+        myTree.addRoot(875);
+        myTree.deleteRow(myTree.getRoot());
+        assertTrue(myTree.getTreeValues(myTree.getRoot()).matches(""));
+    }
+
 }//end MainTest
