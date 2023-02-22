@@ -34,5 +34,34 @@ class MainTest {
         assertTrue(myTree.getValue(myTree.getRoot()) != 1000);
     }//end addTwoRootsFail
 
+    //add row tests
+    @Test
+    public void addRowPass()
+    {
+        Tree myTree = new Tree();
+        myTree.addRoot(51);
+        myTree.addRow();
+        assertTrue(myTree.getTreeValues(myTree.getRoot()).matches("1 51 2 "));
+    }//end addRowPass
 
+    @Test
+    void addTwoRowsPass()
+    {
+        Tree myTree = new Tree();
+        myTree.addRoot(34);
+        myTree.addRow();
+        myTree.addRow();
+        assertTrue(myTree.getTreeValues(myTree.getRoot()).matches("3 1 4 34 5 2 6 "));
+    }//end addTwoRowsPass
+
+    @Test
+    void addThreeRowsFail()
+    {
+        Tree myTree = new Tree();
+        myTree.addRoot(103);
+        myTree.addRow();
+        myTree.addRow();
+        myTree.addRow();
+        assertTrue(myTree.getTreeValues(myTree.getRoot()).matches("1 2 3 4 4 5 6 7 8 9 10 11 12 13 14 103 ") == false);
+    }//end addThreeRowsFail
 }//end MainTest
